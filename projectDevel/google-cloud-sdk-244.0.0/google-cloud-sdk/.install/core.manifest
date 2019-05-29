@@ -165,6 +165,8 @@ lib/googlecloudsdk/api_lib/compute/networks_utils.py
 lib/googlecloudsdk/api_lib/compute/openssl_encryption_utils.py
 lib/googlecloudsdk/api_lib/compute/operations/__init__.py
 lib/googlecloudsdk/api_lib/compute/operations/poller.py
+lib/googlecloudsdk/api_lib/compute/os_config/__init__.py
+lib/googlecloudsdk/api_lib/compute/os_config/osconfig_utils.py
 lib/googlecloudsdk/api_lib/compute/path_simplifier.py
 lib/googlecloudsdk/api_lib/compute/property_selector.py
 lib/googlecloudsdk/api_lib/compute/regions/__init__.py
@@ -617,6 +619,8 @@ lib/googlecloudsdk/command_lib/compute/networks/vpc_access/__init__.py
 lib/googlecloudsdk/command_lib/compute/networks/vpc_access/resources.yaml
 lib/googlecloudsdk/command_lib/compute/operations/__init__.py
 lib/googlecloudsdk/command_lib/compute/operations/flags.py
+lib/googlecloudsdk/command_lib/compute/os_config/__init__.py
+lib/googlecloudsdk/command_lib/compute/os_config/resource_args.py
 lib/googlecloudsdk/command_lib/compute/regions/__init__.py
 lib/googlecloudsdk/command_lib/compute/regions/flags.py
 lib/googlecloudsdk/command_lib/compute/reservations/__init__.py
@@ -977,6 +981,7 @@ lib/googlecloudsdk/command_lib/resource_manager/org_policies_base.py
 lib/googlecloudsdk/command_lib/resource_manager/org_policies_flags.py
 lib/googlecloudsdk/command_lib/resource_manager/resources.yaml
 lib/googlecloudsdk/command_lib/run/__init__.py
+lib/googlecloudsdk/command_lib/run/commands.py
 lib/googlecloudsdk/command_lib/run/config_changes.py
 lib/googlecloudsdk/command_lib/run/connection_context.py
 lib/googlecloudsdk/command_lib/run/deployable.py
@@ -1569,6 +1574,10 @@ lib/googlecloudsdk/third_party/apis/cloudshell/v1alpha1/resources.py
 lib/googlecloudsdk/third_party/apis/cloudshell_v1.json
 lib/googlecloudsdk/third_party/apis/cloudshell_v1alpha1.json
 lib/googlecloudsdk/third_party/apis/cloudtasks/__init__.py
+lib/googlecloudsdk/third_party/apis/cloudtasks/v2/__init__.py
+lib/googlecloudsdk/third_party/apis/cloudtasks/v2/cloudtasks_v2_client.py
+lib/googlecloudsdk/third_party/apis/cloudtasks/v2/cloudtasks_v2_messages.py
+lib/googlecloudsdk/third_party/apis/cloudtasks/v2/resources.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta2/__init__.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta2/cloudtasks_v2beta2_client.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta2/cloudtasks_v2beta2_messages.py
@@ -1577,6 +1586,7 @@ lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta3/__init__.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta3/cloudtasks_v2beta3_client.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta3/cloudtasks_v2beta3_messages.py
 lib/googlecloudsdk/third_party/apis/cloudtasks/v2beta3/resources.py
+lib/googlecloudsdk/third_party/apis/cloudtasks_v2.json
 lib/googlecloudsdk/third_party/apis/cloudtasks_v2beta2.json
 lib/googlecloudsdk/third_party/apis/cloudtasks_v2beta3.json
 lib/googlecloudsdk/third_party/apis/composer/__init__.py
@@ -2798,6 +2808,13 @@ lib/surface/compute/networks/vpc_access/operations/list.yaml
 lib/surface/compute/operations/__init__.py
 lib/surface/compute/operations/describe.py
 lib/surface/compute/operations/list.py
+lib/surface/compute/os_config/__init__.py
+lib/surface/compute/os_config/patch_jobs/__init__.py
+lib/surface/compute/os_config/patch_jobs/cancel.py
+lib/surface/compute/os_config/patch_jobs/describe.py
+lib/surface/compute/os_config/patch_jobs/execute.py
+lib/surface/compute/os_config/patch_jobs/list.py
+lib/surface/compute/os_config/patch_jobs/list_instance_details.py
 lib/surface/compute/os_login/__init__.py
 lib/surface/compute/os_login/describe_profile.py
 lib/surface/compute/os_login/remove_profile.py
@@ -3579,6 +3596,7 @@ lib/surface/iam/service_accounts/keys/create.py
 lib/surface/iam/service_accounts/keys/delete.py
 lib/surface/iam/service_accounts/keys/get_public_key.py
 lib/surface/iam/service_accounts/keys/list.py
+lib/surface/iam/service_accounts/keys/upload.yaml
 lib/surface/iam/service_accounts/list.py
 lib/surface/iam/service_accounts/remove_iam_policy_binding.yaml
 lib/surface/iam/service_accounts/set_iam_policy.py
@@ -4076,6 +4094,8 @@ lib/surface/scheduler/jobs/create/pubsub.yaml
 lib/surface/scheduler/jobs/delete.yaml
 lib/surface/scheduler/jobs/describe.yaml
 lib/surface/scheduler/jobs/list.yaml
+lib/surface/scheduler/jobs/pause.yaml
+lib/surface/scheduler/jobs/resume.yaml
 lib/surface/scheduler/jobs/run.yaml
 lib/surface/search_help.py
 lib/surface/service_management/__init__.py

@@ -442,11 +442,7 @@ platform/google_appengine/google/appengine/tools/java/lib/opt/tools/appengine-lo
 platform/google_appengine/google/appengine/tools/java/lib/opt/user/appengine-api-labs/v1/appengine-api-labs.jar
 platform/google_appengine/google/appengine/tools/java/lib/opt/user/appengine-endpoints/v1/appengine-endpoints-deps.jar
 platform/google_appengine/google/appengine/tools/java/lib/opt/user/appengine-endpoints/v1/appengine-endpoints.jar
-platform/google_appengine/google/appengine/tools/java/lib/shared/LICENSE
 platform/google_appengine/google/appengine/tools/java/lib/shared/appengine-local-runtime-shared.jar
-platform/google_appengine/google/appengine/tools/java/lib/shared/el-api.jar
-platform/google_appengine/google/appengine/tools/java/lib/shared/jsp-api.jar
-platform/google_appengine/google/appengine/tools/java/lib/shared/servlet-api.jar
 platform/google_appengine/google/appengine/tools/java/lib/testing/appengine-testing.jar
 platform/google_appengine/google/appengine/tools/java/lib/tools/quickstart/quickstartgenerator.jar
 platform/google_appengine/google/appengine/tools/java/lib/user/appengine-jsr107cache-0.0.0.jar

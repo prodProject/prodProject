@@ -8,8 +8,10 @@ package com.prod.prodServer.Worksers;
 import javax.inject.Inject;
 import com.prod.prodServer.CloudSql.CloudSqlQueryBuilder;
 import com.prod.prodServer.CloudSql.CloudSqlQueryExecutor;
+import com.prod.prodServer.CommonCode.JSONConvertor;
 import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import com.prod.prodServer.Helpers.WorkerOpreationHelper;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import org.json.JSONObject;
@@ -29,21 +31,42 @@ public class WorkerOreation {
         m_helper = helper;
     }
 
-    public void insertWorker() {
-
-        // m_querybuilder.insertQuery(CloudSQLTableEnum.WORKER_TABLE, WorkersTableSchema.getWorkersSchema(),Map<String,String>);
-    }
-
     public JSONObject insertWorker(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> workerInformation) throws SQLException {
-        Map<String, String> updatedconfig = m_helper.addWorkerConfig(workerInformation);
+        Map<String, String> updatedconfig = m_helper.addWorkerConfigWhileCreated(workerInformation);
         String insertQuery = m_querybuilder.insertQuery(cloudSQLTableEnum.WORKER_TABLE, updatedconfig);
         System.err.println("" + insertQuery);
         boolean value = CloudSqlQueryExecutor.insertIntoTable(insertQuery);
-        System.out.println("Query executed result"+value);
+        System.out.println("Query executed result" + value);
         if (value) {
             return m_helper.returnInsertJsonSucess();
         } else {
             return m_helper.returnInsertJsonFailed();
+        }
+    }
+
+    public JSONObject getWorker(CloudSQLTableEnum cloudSQLTableEnum, String info) throws SQLException {
+        if (info.isEmpty()) {
+        }
+        String query = m_querybuilder.getWorkerQuery(cloudSQLTableEnum.WORKER_TABLE, info);
+        System.err.println("" + query);
+        ResultSet response = CloudSqlQueryExecutor.selectFromTable(query);
+        if (response != null) {
+            return JSONConvertor.getResultSetAsJsonObject(response);
+        } else {
+            return m_helper.returnJsonFailed();
+        }
+    }
+
+    public JSONObject getAndUpdateWorker(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> workerInformation) throws SQLException {
+        //Map<String, String> updatedconfig = m_helper.addWorkerConfigWhileCreated(workerInformation);
+        String updateQuery = m_querybuilder.updateWorkerQuery(cloudSQLTableEnum.WORKER_TABLE, workerInformation);
+        System.err.println("" + updateQuery);
+        boolean value = CloudSqlQueryExecutor.updateIntoTable(updateQuery);
+        System.out.println("Query executed result" + value);
+        if (value) {
+            return m_helper.returnUpdateJsonSucess();
+        } else {
+            return m_helper.returnUpdateJsonFailed();
         }
     }
 

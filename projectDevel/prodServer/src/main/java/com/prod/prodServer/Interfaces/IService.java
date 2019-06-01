@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public interface IService {
     
-   
-    public JSONObject getService(Map<String, String> info);
+    public JSONObject getGetService(String info);
+    public JSONObject getPostService(Map<String, String> info);
     
 }

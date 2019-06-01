@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,17 +33,13 @@ public class WorkerServlet extends HttpServlet {
         m_service = new WorkersService();
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        ServletOutputStream a = resp.getOutputStream();
-//        try {
-//            String query = "create table users ( id int unsigned auto_increment not null, first_name varchar(32) not null, last_name varchar(32) not null, date_created timestamp default now(), is_admin boolean, num_points int, primary key (id) );";
-//            CloudSqlQueryExecutor.createTable(query);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JSONObject response = m_service.getGetService(req.getQueryString());
+        PrintWriter out = resp.getWriter();
+        out.print(response.toString());
+        out.flush();
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
@@ -56,7 +53,7 @@ public class WorkerServlet extends HttpServlet {
                 workerInformation.put(data, req.getParameter(data));
             }
         }
-        JSONObject response = m_service.getService(workerInformation);
+        JSONObject response = m_service.getPostService(workerInformation);
         PrintWriter out = resp.getWriter();
         out.print(response.toString());
         out.flush();

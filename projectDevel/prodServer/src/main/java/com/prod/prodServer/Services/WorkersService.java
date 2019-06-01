@@ -24,7 +24,19 @@ import org.json.JSONObject;
 public class WorkersService implements IService {
 
     @Override
-    public JSONObject getService(Map<String, String> workerInformation) {
+    public JSONObject getGetService(String info) {
+        JSONObject response = null;
+        WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
+        try {
+            response = opreation.getWorker(CloudSQLTableEnum.WORKER_TABLE, info);
+        } catch (SQLException ex) {
+            Logger.getLogger(WorkersService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return response;
+    }
+
+    @Override
+    public JSONObject getPostService(Map<String, String> workerInformation) {
         JSONObject response = null;
         WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
         try {

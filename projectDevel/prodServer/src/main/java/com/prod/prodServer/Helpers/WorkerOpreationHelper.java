@@ -43,6 +43,24 @@ public class WorkerOpreationHelper {
         return obj;
     }
 
+    public JSONObject returnUpdateJsonSucess() {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 1);
+        obj.put("code", 200);
+        obj.put("message", "User Update");
+        obj.put("status", ResponseEnum.SUCCESS.name());
+        return obj;
+    }
+
+    public JSONObject returnUpdateJsonFailed() {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 0);
+        obj.put("code", 500);
+        obj.put("message", "User User Updation Failed");
+        obj.put("status", ResponseEnum.FAILED.name());
+        return obj;
+    }
+
     public JSONObject returnInsertJsonFailed() {
         JSONObject obj = new JSONObject();
         obj.put("status_code", 0);

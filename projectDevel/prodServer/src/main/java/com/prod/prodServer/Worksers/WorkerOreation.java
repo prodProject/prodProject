@@ -14,6 +14,7 @@ import com.prod.prodServer.Helpers.WorkerOpreationHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import org.httprpc.sql.ResultSetAdapter;
 import org.json.JSONObject;
 
 /**
@@ -24,6 +25,8 @@ public class WorkerOreation {
 
     private CloudSqlQueryBuilder m_querybuilder;
     private WorkerOpreationHelper m_helper;
+
+    private ResultSet response = null;
 
     @Inject
     public WorkerOreation(CloudSqlQueryBuilder querybuilder, WorkerOpreationHelper helper) {
@@ -44,14 +47,16 @@ public class WorkerOreation {
         }
     }
 
-    public JSONObject getWorker(CloudSQLTableEnum cloudSQLTableEnum, String info) throws SQLException {
+    public JSONObject getWorker(CloudSQLTableEnum cloudSQLTableEnum, String info) throws SQLException, Exception {
+        JSONObject result = null;
         if (info.isEmpty()) {
+            return m_helper.returnJsonFailed();
         }
         String query = m_querybuilder.getWorkerQuery(cloudSQLTableEnum.WORKER_TABLE, info);
         System.err.println("" + query);
-        ResultSet response = CloudSqlQueryExecutor.selectFromTable(query);
-        if (response != null) {
-            return JSONConvertor.getResultSetAsJsonObject(response);
+        result = CloudSqlQueryExecutor.selectFromTable(query);
+        if ((result != null)) {
+            return result;
         } else {
             return m_helper.returnJsonFailed();
         }

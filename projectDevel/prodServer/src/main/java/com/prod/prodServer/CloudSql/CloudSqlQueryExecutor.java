@@ -5,10 +5,12 @@
  */
 package com.prod.prodServer.CloudSql;
 
+import com.prod.prodServer.CommonCode.JSONConvertor;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.json.JSONObject;
 
 /**
  *
@@ -25,7 +27,7 @@ public class CloudSqlQueryExecutor {
 
     public static void closeCloudConnection() throws SQLException {
         connection.close();
-        connection=null;
+        connection = null;
     }
 
     public static void createTable(String query) throws SQLException {
@@ -51,14 +53,35 @@ public class CloudSqlQueryExecutor {
         }
     }
 
-    public static ResultSet selectFromTable(String query) throws SQLException {
+    public static boolean updateIntoTable(String query) throws SQLException {
+        if (connection == null) {
+            ConnectCloudDatabase();
+        }
+        Statement stmt = connection.createStatement();
+        int result = stmt.executeUpdate(query);
+        closeCloudConnection();
+        if (result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static JSONObject selectFromTable(String query) throws SQLException, Exception {
         if (connection == null) {
             ConnectCloudDatabase();
         }
         Statement stmt = connection.createStatement();
         ResultSet response = stmt.executeQuery(query);
+        if (response.next() == false) {
+            System.out.println("number of rows are empty");
+        } else {
+            System.out.println("number of rows" + response.getMetaData().getColumnCount());
+            System.out.println("number of rows" + response.getObject("worker_uid"));
+        }
+        JSONObject resp  = JSONConvertor.getResultSetAsJsonObject(response);
         closeCloudConnection();
-        return response;
+        return resp;
     }
 
 }

@@ -55,6 +55,11 @@ limitations under the License.
             <artifactId>appengine-api-1.0-sdk</artifactId>
             <version>1.9.69</version>
         </dependency>
+        <dependency>
+            <groupId>org.httprpc</groupId>
+            <artifactId>httprpc</artifactId>
+            <version>6.3.3</version>
+        </dependency>
         <!-- [START servlet] -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -74,6 +79,7 @@ limitations under the License.
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+            
         <dependency>
             <groupId>com.healthmarketscience.sqlbuilder</groupId>
             <artifactId>sqlbuilder</artifactId>

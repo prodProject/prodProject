@@ -1,6 +1,7 @@
-package com.kaag.collegehelper.Interfaces;
+package com.prod.prodProject.Interfaces;
 
-import com.kaag.collegehelper.Enums.UserTypeEnum;
+
+import com.prod.prodProject.Enums.UserTypeEnum;
 
 public interface IFormatter<T> {
 

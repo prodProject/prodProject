@@ -1,4 +1,4 @@
-package com.kaag.collegehelper.CommonClasses;
+package com.prod.prodProject.CommonClasses;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.kaag.collegehelper.Enums;
+package com.prod.prodProject.Enums;
 
 public enum UserTypeEnum {
     UNKNOWN,

@@ -1,4 +1,4 @@
-package com.kaag.collegehelper.CommonClasses;
+package com.prod.prodProject.CommonClasses;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -220,7 +220,7 @@ public class ApiCallerService {
                 }
             }
         }
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), String.valueOf(jsonObj));
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), String.valueOf(jsonObj));
         return requestBody;
     }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MobileVerification">
+
+
+    <EditText
+        android:id="@+id/otpcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="236dp"
+        android:hint="Enter OTP"
+        android:padding="20dp"
+        android:textSize="20sp"
+
+
+        />
+
+    <Button
+        android:id="@+id/otpbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/otpcode"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/roundbtn"
+        android:layout_alignRight="@+id/otpcode"
+        android:padding="40dp"
+        android:text="Submit"
+
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/otpbtn"
+        android:layout_marginTop="7dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

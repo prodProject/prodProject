@@ -39,7 +39,8 @@ public class CloudSqlQueryBuilder {
     public String getWorkerQuery(CloudSQLTableEnum cloudSQLTableEnum, String info) {
         String Query = "";
         SelectQuery selectQuery = new SelectQuery();
-        selectQuery.addAllColumns();
+        //selectQuery.addAllColumns();
+        //selectQuery.
         selectQuery.addCustomFromTable(m_formetter.formatData(cloudSQLTableEnum));
         selectQuery.getWhereClause().addCustomCondition("worker_uid = " + "'" + info + "'");
         return selectQuery.toString().concat("LIMIT 1 ;");

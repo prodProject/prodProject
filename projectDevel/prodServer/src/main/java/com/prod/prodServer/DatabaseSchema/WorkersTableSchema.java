@@ -37,7 +37,17 @@ public class WorkersTableSchema {
         schema.add("worker_photo");
         schema.add("worker_Descrtiption");
         schema.add("worker_timestamp");
-        schema.add("worker_lifeTime");
+        schema.add("worker_lifetime");
+        return schema;
+    }
+    
+    public static ArrayList<String> getOtpAndEmailVerificationSchema(){
+        ArrayList<String> schema = new ArrayList<>();
+        schema.add("uid");
+        schema.add("otp");
+        schema.add("token");
+        schema.add("timestamp");
+        schema.add("lifeTime");
         return schema;
     }
 

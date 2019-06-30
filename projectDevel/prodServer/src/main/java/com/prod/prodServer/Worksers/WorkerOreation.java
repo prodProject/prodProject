@@ -9,10 +9,12 @@ import javax.inject.Inject;
 import com.prod.prodServer.CloudSql.CloudSqlQueryBuilder;
 import com.prod.prodServer.CloudSql.CloudSqlQueryExecutor;
 import com.prod.prodServer.CommonCode.JSONConvertor;
+import com.prod.prodServer.DatabaseSchema.WorkersTableSchema;
 import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import com.prod.prodServer.Helpers.WorkerOpreationHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import org.httprpc.sql.ResultSetAdapter;
 import org.json.JSONObject;
@@ -40,7 +42,9 @@ public class WorkerOreation {
         System.err.println("" + insertQuery);
         boolean value = CloudSqlQueryExecutor.insertIntoTable(insertQuery);
         System.out.println("Query executed result" + value);
-        if (value) {
+        String uid = updatedconfig.get(WorkersTableSchema.getWorkersSchema().get(0));
+        String email = updatedconfig.get(WorkersTableSchema.getWorkersSchema().get(5));
+        if (true) {
             return m_helper.returnInsertJsonSucess();
         } else {
             return m_helper.returnInsertJsonFailed();
@@ -73,6 +77,17 @@ public class WorkerOreation {
         } else {
             return m_helper.returnUpdateJsonFailed();
         }
+    }
+
+    public JSONObject userLoginWithCredentials(String emailorphone, String password) {
+        if (emailorphone.isEmpty() || password.isEmpty()) {
+            return m_helper.returnJsonFailed();
+        }
+        Map<String, String> map = new HashMap<String, String>();
+      //  map.
+        //m_helper.getEmailorphone();
+        m_querybuilder.getWorkerUser();
+         return null;
     }
 
 }

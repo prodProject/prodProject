@@ -77,7 +77,6 @@ public class CloudSqlQueryExecutor {
             System.out.println("number of rows are empty");
         } else {
             System.out.println("number of rows" + response.getMetaData().getColumnCount());
-            System.out.println("number of rows" + response.getObject("worker_uid"));
         }
         JSONObject resp  = JSONConvertor.convertResultSetIntoJSON(response);
         closeCloudConnection();

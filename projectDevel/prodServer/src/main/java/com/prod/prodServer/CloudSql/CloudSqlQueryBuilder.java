@@ -5,6 +5,7 @@
  */
 package com.prod.prodServer.CloudSql;
 
+import com.healthmarketscience.sqlbuilder.CreateTableQuery;
 import com.healthmarketscience.sqlbuilder.InsertQuery;
 import com.healthmarketscience.sqlbuilder.QueryReader;
 import com.healthmarketscience.sqlbuilder.SelectQuery;
@@ -25,6 +26,7 @@ public class CloudSqlQueryBuilder {
     public CloudSqlQueryBuilder(CloudSqlEnumsFormatter formetter) {
         m_formetter = formetter;
     }
+
 
     public String insertQuery(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> updatedconfig) {
         String Query = "";
@@ -60,5 +62,23 @@ public class CloudSqlQueryBuilder {
         updateQuery.getWhereClause().addCustomCondition("worker_uid = " + "'" + uid + "'");
         return updateQuery.toString().concat(";");
 
+    }
+    
+    public String createTableQuery(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> updatedconfig) {
+        
+        String Query = "";
+        
+        CreateTableQuery createTableQuery = new CreateTableQuery(cloudSQLTableEnum.name());
+        for (Map.Entry<String, String> entry : updatedconfig.entrySet()) {
+            
+            
+        }
+        return createTableQuery.toString().concat(";");
+
+    }
+
+    public String getWorkerUser() {
+        //String
+        return "";
     }
 }

@@ -31,6 +31,8 @@ public class WorkersService implements IService {
             response = opreation.getWorker(CloudSQLTableEnum.WORKER_TABLE, info);
         } catch (SQLException ex) {
             Logger.getLogger(WorkersService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(WorkersService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return response;
     }
@@ -45,6 +47,13 @@ public class WorkersService implements IService {
             Logger.getLogger(WorkersService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return response;
+    }
+
+    public JSONObject getuserLogin(String emailorphone, String password) {
+        JSONObject response = null;
+        WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
+        response = opreation.userLoginWithCredentials(emailorphone,password);
+        return null;
     }
 
 }

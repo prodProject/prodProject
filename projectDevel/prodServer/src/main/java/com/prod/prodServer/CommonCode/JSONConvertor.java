@@ -5,6 +5,7 @@
  */
 package com.prod.prodServer.CommonCode;
 
+import com.prod.prodServer.Enums.ResponseEnum;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -100,6 +101,33 @@ public class JSONConvertor {
         String formattedValue = f.format(Double.parseDouble(value));
         double number = Double.parseDouble(formattedValue);
         return Math.round(number * 100.0) / 100.0;
+    }
+
+    public static JSONObject returnJsonFailed() {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 0);
+        obj.put("code", 500);
+        obj.put("message", "Failed");
+        obj.put("status", ResponseEnum.FAILED.name());
+        return obj;
+    }
+
+    public static JSONObject returnJsonSuccess() {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 1);
+        obj.put("code", 200);
+        obj.put("message", "Sucess");
+        obj.put("status", ResponseEnum.SUCCESS.name());
+        return obj;
+    }
+
+    public static JSONObject returnJsonFailed(String message) {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 0);
+        obj.put("code", 500);
+        obj.put("message", message);
+        obj.put("status", ResponseEnum.FAILED.name());
+        return obj;
     }
 
 }

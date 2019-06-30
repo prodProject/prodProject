@@ -17,6 +17,9 @@ public enum LifeTimeEnum {
     SUSPENDED,
     VERIFIED,
     NOT_VERIFIED,
+    VEFFIED_VIA_OTP,
+    VERFIED_VIA_EMAIL,
+    
     
     
 }

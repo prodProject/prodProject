@@ -1,10 +1,13 @@
 
 import com.prod.prodServer.CloudSql.CloudSqlQueryBuilder;
-import com.prod.prodServer.CommonCode.GenerateShortUUID;
 import com.prod.prodServer.DatabaseSchema.WorkersTableSchema;
 import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import com.prod.prodServer.Formatters.CloudSqlEnumsFormatter;
-import java.util.ArrayList;
+import com.prod.prodServer.Formatters.LiferTimeEnumFormatter;
+import com.prod.prodServer.Helpers.WorkerOpreationHelper;
+import com.prod.prodServer.Worksers.WorkerOreation;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,15 +22,10 @@ import java.util.Map;
  */
 public class Test {
 
-    public static void main(String[] args) {
-        ArrayList<String> array = WorkersTableSchema.getWorkersSchema();
-        Map<String,String> map = new HashMap<String, String>();
-        for (String data : array) {
-            map.put(data, "DUMMY");
-        }
+    public static void main(String[] args) throws IOException, SQLException {
+        LiferTimeEnumFormatter format = new LiferTimeEnumFormatter();
+        System.out.println("Test.main()"+format.formatData("ACTIVE").name());
         
-        CloudSqlQueryBuilder builder = new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter());
-        String query = builder.insertQuery(CloudSQLTableEnum.WORKER_TABLE, map);
-        System.out.println(""+ query);
-    }
+            }
+    
 }

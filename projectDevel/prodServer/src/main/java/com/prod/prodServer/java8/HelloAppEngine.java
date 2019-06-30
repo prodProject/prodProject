@@ -18,9 +18,21 @@ package com.prod.prodServer.java8;
 
 // [START example]
 import com.google.appengine.api.utils.SystemProperty;
+import com.prod.prodServer.Enums.EmailTypeEnum;
+import com.prod.prodServer.Enums.VerificationModeEnum;
+import com.prod.prodServer.Services.EmailService;
+import com.prod.prodServer.Services.VerificationService;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.annotation.WebServlet;
 
 import javax.servlet.http.HttpServlet;
@@ -34,19 +46,12 @@ public class HelloAppEngine extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    Properties properties = System.getProperties();
-
-    response.setContentType("text/plain");
-    response.getWriter().println("Hello App Engine - Standard using "
-            + SystemProperty.version.get() + " Java "
-            + properties.get("java.specification.version"));
+        VerificationService service = new VerificationService();
+        service.getPostService("9E28xVgp01P","shubhamtiwaricr07@gmail.com", VerificationModeEnum.THROUGH_MAIL);
+        
   }
-
-  public static String getInfo() {
-    return "Version: " + System.getProperty("java.version")
-          + " OS: " + System.getProperty("os.name")
-          + " User: " + System.getProperty("user.name");
-  }
+  
+    
 
 }
 // [END example]

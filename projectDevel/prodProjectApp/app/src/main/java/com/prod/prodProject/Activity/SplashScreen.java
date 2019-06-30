@@ -28,17 +28,7 @@ public class SplashScreen extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* ApiCallerService.getInstance().post(ServerUrlManager.getRegistrationURL(),m_params, new ApiCallerService.RestClientListener() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Log.e("resp",response);
-                    }
 
-                    @Override
-                    public void onError(String error) {
-
-                    }
-                });*/
                 OptimusHTTP client = new OptimusHTTP(getApplicationContext());
                 client.setMethod(OptimusHTTP.METHOD_POST);
                 //client.setContentType(OptimusHTTP.CONTENT_TYPE_JSON);

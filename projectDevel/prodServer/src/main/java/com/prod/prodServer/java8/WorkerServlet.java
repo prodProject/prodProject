@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,8 +43,6 @@ public class WorkerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         Map<String, String> workerInformation = new HashMap<String,String>();
-        
-
         for (String data : WorkersTableSchema.getWorkersSchema()) {
             if (null==req.getParameter(data)) {
                 workerInformation.put(data, "0");

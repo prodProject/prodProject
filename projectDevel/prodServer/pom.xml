@@ -70,16 +70,25 @@ limitations under the License.
         </dependency>
         <!-- [END servlet] -->
         <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client-appengine</artifactId>
+            <version>1.7.0-beta</version>
+        </dependency>
+        <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>3.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-urlshortener</artifactId>
+            <version>v1-rev57-1.25.0</version>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-            
         <dependency>
             <groupId>com.healthmarketscience.sqlbuilder</groupId>
             <artifactId>sqlbuilder</artifactId>
@@ -92,6 +101,11 @@ limitations under the License.
             <artifactId>appengine-testing</artifactId>
             <version>1.9.69</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>6.8.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>

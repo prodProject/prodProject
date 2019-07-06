@@ -1,6 +1,7 @@
 
 import com.prod.prodServer.CloudSql.CloudSqlQueryBuilder;
 import com.prod.prodServer.DatabaseSchema.WorkersTableSchema;
+import com.prod.prodServer.EncodersAndDecoders.Base64EncoderDecoder;
 import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import com.prod.prodServer.Formatters.CloudSqlEnumsFormatter;
 import com.prod.prodServer.Formatters.LiferTimeEnumFormatter;
@@ -21,11 +22,11 @@ import java.util.Map;
  * @author shubham
  */
 public class Test {
-
+    
     public static void main(String[] args) throws IOException, SQLException {
-        LiferTimeEnumFormatter format = new LiferTimeEnumFormatter();
-        System.out.println("Test.main()"+format.formatData("ACTIVE").name());
         
-            }
+        System.out.println(Base64EncoderDecoder.reverseConvert("B"));
+        
+    }
     
 }

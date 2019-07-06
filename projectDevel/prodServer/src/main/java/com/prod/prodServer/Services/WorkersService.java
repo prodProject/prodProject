@@ -49,7 +49,7 @@ public class WorkersService implements IService {
         return response;
     }
 
-    public JSONObject getuserLogin(String emailorphone, String password) {
+    public JSONObject getuserLogin(String emailorphone, String password) throws Exception {
         JSONObject response = null;
         WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
         response = opreation.userLoginWithCredentials(emailorphone,password);

@@ -77,4 +77,22 @@ public class WorkerOpreationHelper {
         obj.put("status", ResponseEnum.FAILED.name());
         return obj;
     }
+    public JSONObject returnJsonSuccess() {
+        JSONObject obj = new JSONObject();
+        obj.put("status_code", 1);
+        obj.put("code", 200);
+        obj.put("message", "success");
+        obj.put("status", ResponseEnum.SUCCESS.name());
+        return obj;
+    }
+
+
+    public void getEmailorphone(String emailorphone, Map<String, String> map) {
+    if(emailorphone.split("@").length == 2){    
+        map.put("worker_email", emailorphone);
+    }
+    else if(emailorphone.length() == 10){
+        map.put("worker_contactno", emailorphone);
+    }
+    }
 }

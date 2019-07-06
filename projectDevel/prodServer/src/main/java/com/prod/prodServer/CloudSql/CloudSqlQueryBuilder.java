@@ -81,4 +81,18 @@ public class CloudSqlQueryBuilder {
         //String
         return "";
     }
+
+    public String getWorkerUser(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> map) {
+        String Query = "";
+        SelectQuery selectQuery = new SelectQuery();
+        selectQuery.addAllColumns();
+        //selectQuery.
+        selectQuery.addCustomFromTable(m_formetter.formatData(cloudSQLTableEnum));
+        for(Map.Entry<String, String> data:map.entrySet())
+        {
+             selectQuery.getWhereClause().addCustomCondition(data.getKey()+" = " + "'" + data.getValue()+ "'");
+        }
+       
+        return selectQuery.toString().concat("LIMIT 1 ;");
+    }
 }

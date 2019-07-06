@@ -79,15 +79,18 @@ public class WorkerOreation {
         }
     }
 
-    public JSONObject userLoginWithCredentials(String emailorphone, String password) {
+    public JSONObject userLoginWithCredentials(String emailorphone, String password) throws Exception {
+        System.out.print(emailorphone +"----*******"+ password);
         if (emailorphone.isEmpty() || password.isEmpty()) {
             return m_helper.returnJsonFailed();
         }
         Map<String, String> map = new HashMap<String, String>();
-      //  map.
-        //m_helper.getEmailorphone();
-        m_querybuilder.getWorkerUser();
-         return null;
+        map.put("worker_password", password );
+        m_helper.getEmailorphone(emailorphone,map);
+        String query =  m_querybuilder.getWorkerUser(CloudSQLTableEnum.WORKER_TABLE, map);
+        System.out.println(query);
+        JSONObject response = CloudSqlQueryExecutor.selectFromTable(query);
+        return response;
     }
 
 }

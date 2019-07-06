@@ -8,6 +8,7 @@ package com.prod.prodServer.java8;
 import com.google.api.client.util.Preconditions;
 import com.prod.prodServer.Services.WorkersService;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +31,9 @@ public class WorkerLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-        
-        
-        m_service.getuserLogin(req.getParameter("email/phoneno"),req.getParameter("password"));
+       
+        PrintWriter out = resp.getWriter();
+        out.print( m_service.getuserLogin(req.getParameter("f"),req.getParameter("password")));
     }
 
 }

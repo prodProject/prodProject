@@ -73,6 +73,7 @@ public class CloudSqlQueryExecutor {
         }
         Statement stmt = connection.createStatement();
         ResultSet response = stmt.executeQuery(query);
+        System.out.println(response);
         if (response.next() == false) {
             System.out.println("number of rows are empty");
         } else {

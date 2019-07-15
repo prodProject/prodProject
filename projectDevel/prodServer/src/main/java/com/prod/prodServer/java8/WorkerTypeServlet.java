@@ -5,8 +5,8 @@
  */
 package com.prod.prodServer.java8;
 
-import com.google.api.client.util.Preconditions;
-import com.prod.prodServer.Services.WorkersService;
+import com.prod.prodServer.Handlers.WorkerTypeHandler;
+import com.prod.prodServer.QueryBuilders.WorkerTypeQueryBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -21,24 +21,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author shubham
  */
-@WebServlet(name = "WorkerLoginServlet", urlPatterns = {"/WorkerLoginMain"})
-public class WorkerLoginServlet extends HttpServlet {
+@WebServlet(name = "WorkerTypeServlet", urlPatterns = {"/workerTypeMain"})
+public class WorkerTypeServlet extends HttpServlet {
 
-    private WorkersService m_service;
+    private WorkerTypeHandler m_handler;
 
     @Override
     public void init() throws ServletException {
-        m_service = new WorkersService();
+        m_handler = new WorkerTypeHandler(new WorkerTypeQueryBuilder());
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         try {
-            out.print( m_service.getuserLogin(req.getParameter("email/phone"),req.getParameter("password")));
+            out.print(m_handler.getAllWorkerType());
         } catch (Exception ex) {
-            Logger.getLogger(WorkerLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WorkerTypeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

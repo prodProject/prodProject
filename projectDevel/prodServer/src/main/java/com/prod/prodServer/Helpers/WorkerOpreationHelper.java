@@ -10,6 +10,7 @@ import com.prod.prodServer.Enums.LifeTimeEnum;
 import com.prod.prodServer.Enums.ResponseEnum;
 import java.util.Map;
 import javax.inject.Singleton;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -77,6 +78,7 @@ public class WorkerOpreationHelper {
         obj.put("status", ResponseEnum.FAILED.name());
         return obj;
     }
+
     public JSONObject returnJsonSuccess() {
         JSONObject obj = new JSONObject();
         obj.put("status_code", 1);
@@ -86,13 +88,29 @@ public class WorkerOpreationHelper {
         return obj;
     }
 
-
     public void getEmailorphone(String emailorphone, Map<String, String> map) {
-    if(emailorphone.split("@").length == 2){    
-        map.put("worker_email", emailorphone);
+        if (emailorphone.split("@").length == 2) {
+            map.put("worker_email", emailorphone);
+        } else if (emailorphone.length() == 10) {
+            map.put("worker_contactno", emailorphone);
+        }
     }
-    else if(emailorphone.length() == 10){
-        map.put("worker_contactno", emailorphone);
-    }
+
+    public JSONObject returmLoginJson(JSONObject response) {
+        JSONObject result= null;
+        JSONArray jsonArray = response.getJSONArray("response");
+        for (int i = 0; i < jsonArray.toList().size(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            result = returnJsonSuccess();
+            result.put("worker_fname", obj.getString("worker_fname"));
+            result.put("worker_lastname", obj.getString("worker_lastname"));
+            result.put("worker_contactno", obj.getString("worker_contactno"));
+            result.put("worker_uid", obj.getString("worker_uid"));
+            result.put("worker_gender", obj.getString("worker_gender"));
+            result.put("worker_email", obj.getString("worker_email"));
+            result.put("worker_lifetime", obj.getString("worker_lifetime"));
+            
+        }
+        return result;
     }
 }

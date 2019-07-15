@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 /**
- *
+ * @see Connect from Cloud
  * @author shubham
  */
 public class CloudSqlConnector {
@@ -30,7 +30,6 @@ public class CloudSqlConnector {
         config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.SocketFactory");
         config.addDataSourceProperty("cloudSqlInstance", CLOUD_SQL_CONNECTION_NAME);
         config.addDataSourceProperty("useSSL", "false");
-
         config.setMaximumPoolSize(5);
         config.setMinimumIdle(5);
         config.setConnectionTimeout(10000); // 10 seconds

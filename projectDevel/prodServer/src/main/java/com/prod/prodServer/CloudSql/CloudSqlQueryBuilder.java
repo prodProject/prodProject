@@ -37,6 +37,16 @@ public class CloudSqlQueryBuilder {
         }
         return insertQuery.toString().concat(";");
     }
+    
+    public String insertQueryWorKerConfig(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> updatedconfig) {
+        String Query = "";
+        InsertQuery insertQuery = new InsertQuery(cloudSQLTableEnum.name());
+
+        for (Map.Entry<String, String> data : updatedconfig.entrySet()) {
+            insertQuery.addCustomColumn(data.getKey(), data.getValue());
+        }
+        return insertQuery.toString().concat(";");
+    }
 
     public String getWorkerQuery(CloudSQLTableEnum cloudSQLTableEnum, String info) {
         String Query = "";

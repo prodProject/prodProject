@@ -9,9 +9,18 @@ package com.prod.prodServer.Enums;
  *
  * @author shubham
  */
-public enum CloudSQLTableEnum {
-    UNKNOWN_TABLE,
-    WORKER_TABLE,
-    OTP_EMAIL_VERIFICATION,
-    WORKER_TYPE_CONFIG,
+public enum WorkerTypeConfigEnum {
+
+    UNKNOWN,
+    CONSTRUCTOR,
+    ELECTRICIAN,
+    PAINTER,
+    CLEANER,
+    PLUMBER,
+    MAID,
+    CARPENTER,
+    LAUNDARY_AND_DRY_CLEANING,
+    PEST_CONTROL,
+    PACKERS_AND_MOVERS,
+    SALON,
 }

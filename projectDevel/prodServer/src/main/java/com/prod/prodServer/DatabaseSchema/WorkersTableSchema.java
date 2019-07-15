@@ -50,5 +50,13 @@ public class WorkersTableSchema {
         schema.add("lifeTime");
         return schema;
     }
+    
+    public static ArrayList<String> getWorkerTypeConfigSchema(){
+        ArrayList<String> schema = new ArrayList<>();
+        schema.add("wid");
+        schema.add("worker_type");
+        schema.add("category");
+        return schema;
+    }
 
 }

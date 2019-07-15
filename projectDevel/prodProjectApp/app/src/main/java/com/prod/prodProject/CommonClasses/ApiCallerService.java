@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,10 +72,12 @@ public class ApiCallerService {
     }
 
     public void get(@NonNull String serviceUrl, @NonNull RestClientListener restClientListener) {
+        Log.e(LOG_TAG,serviceUrl);
         get(serviceUrl, null, null, restClientListener);
     }
 
     public void get(@NonNull String serviceUrl, ArrayMap<String, Object> params, @NonNull RestClientListener restClientListener) {
+        Log.e(LOG_TAG,serviceUrl);
         get(serviceUrl, null, params, restClientListener);
     }
 
@@ -87,6 +90,7 @@ public class ApiCallerService {
     }
 
     public void post(@NonNull String serviceUrl, @NonNull ArrayMap<String, Object> params, @NonNull RestClientListener restClientListener) {
+        Log.e(LOG_TAG,serviceUrl);
         post(serviceUrl, null, params, restClientListener);
     }
 

@@ -243,6 +243,7 @@ public class OptimusHTTP {
      */
     public HttpReq makeRequest(String url, ArrayMap<String, Object> params,
                                ResponseListener listener) {
+        Log.e("URL",url);
         HttpReq req = new HttpReq(connectTimeout, readTimeout, contentType, headerMap);
         HttpReqPkg pkg = new HttpReqPkg();
         if (method == METHOD_GET) {

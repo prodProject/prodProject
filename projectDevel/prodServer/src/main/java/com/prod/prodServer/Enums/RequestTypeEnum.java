@@ -9,10 +9,11 @@ package com.prod.prodServer.Enums;
  *
  * @author shubham
  */
-public enum CloudSQLTableEnum {
-    UNKNOWN_TABLE,
-    WORKER_TABLE,
-    OTP_EMAIL_VERIFICATION,
-    WORKER_TYPE_CONFIG,
-    WORKER_TYPE,
+public enum RequestTypeEnum {
+    
+    UNKNOWN,
+    GET,
+    CREATE,
+    UPDATE,
+    DELETE,
 }

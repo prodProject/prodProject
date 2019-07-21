@@ -1,14 +1,13 @@
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.appengine.repackaged.com.google.api.client.util.Lists;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.SQLNonTransientConnectionException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,55 +19,27 @@ import javax.sql.DataSource;
  */
 public class ColudSqlLocalConnect {
 
+    private static GoogleCredential apiCredentials = null;
+    private static ArrayList<String> scopeList = Lists.newArrayList();
 
     public static void main(String[] args) throws SQLNonTransientConnectionException,
             IOException, SQLException, ClassNotFoundException {
+        scopeList.add("https://www.googleapis.com/auth/cloud-platform");
+        Connection con = DriverManager.getConnection(
+                                        constructJdbcUrl("prodprojectdb", "prod-project-239707:us-east1:prodprojectinstance"),
+                                        "prodproject",
+                                        "affrim@123");
+        
 
-        String instanceConnectionName = "prod-project-239707:us-east1:prodprojectinstance";
-        String databaseName = "prodprojectdb";
-        String IP_of_instance = "34.73.182.98";
-        String username = "prodproject";
-        String password = "affrim@123";
-        String jdbcUrl = String.format(
-                "jdbc:mysql://%s/%s?cloudSqlInstance=%s"
-                + "&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false",
-                IP_of_instance,
-                databaseName,
-                instanceConnectionName);
-
-        Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-//
-//        try (Statement statement = connection.createStatement()) {
-//            ResultSet resultSet = statement.executeQuery("SHOW TABLES");
-//            while (resultSet.next()) {
-//                System.out.println(resultSet.getString(1));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-//        HikariConfig config = new HikariConfig();
-//        config.setJdbcUrl(String.format("jdbc:mysql://%s/%s", IP_of_instance,databaseName));
-//        config.setUsername(username);
-//        config.setPassword(password);
-//        config.addDataSourceProperty("socketFactory", "com.google.cloud.sql.mysql.SocketFactory");
-//        config.addDataSourceProperty("cloudSqlInstance", instanceConnectionName);
-//        config.addDataSourceProperty("useSSL", "false");
-//        config.setMaximumPoolSize(5);
-//        config.setMinimumIdle(5);
-//        config.setConnectionTimeout(10000); // 10 seconds
-//        config.setIdleTimeout(600000); // 10 minutes
-//        config.setMaxLifetime(1800000); // 30 minutes
-//        DataSource pool = new HikariDataSource(config);
-//        Connection con = pool.getConnection();
-//
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SHOW TABLES");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
+
+    private static String constructJdbcUrl(String database, String connectionName) {
+        return String.format(
+                "jdbc:mysql://google/%s?socketFactory=com.google.cloud.sql.mysql.SocketFactory"
+                + "&cloudSqlInstance=%s",
+                database,
+                connectionName);
+
+    }
+
 }

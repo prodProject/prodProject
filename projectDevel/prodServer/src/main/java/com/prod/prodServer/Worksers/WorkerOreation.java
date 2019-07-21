@@ -80,19 +80,30 @@ public class WorkerOreation {
     }
 
     public JSONObject userLoginWithCredentials(String emailorphone, String password) throws Exception {
-        JSONObject res= new JSONObject();
-        System.out.print(emailorphone +"----*******"+ password);
+        JSONObject res = new JSONObject();
+        System.out.print(emailorphone + "----*******" + password);
         if (emailorphone.isEmpty() || password.isEmpty()) {
             return m_helper.returnJsonFailed();
         }
         Map<String, String> map = new HashMap<String, String>();
-        map.put("worker_password", password );
-        m_helper.getEmailorphone(emailorphone,map);
-        String query =  m_querybuilder.getWorkerUser(CloudSQLTableEnum.WORKER_TABLE, map);
+        map.put("worker_password", password);
+        m_helper.getEmailorphone(emailorphone, map);
+        String query = m_querybuilder.getWorkerUser(CloudSQLTableEnum.WORKER_TABLE, map);
         System.out.println(query);
         JSONObject response = CloudSqlQueryExecutor.selectFromTable(query);
         JSONObject result = m_helper.returmLoginJson(response);
         return res.put("response", result);
+    }
+
+    public JSONObject insertWorkerType(Map<String, String> map) throws SQLException {
+        String query = m_querybuilder.insertQueryWorkerType(CloudSQLTableEnum.WORKER_TYPE, map);
+        System.out.println(query);
+        boolean response = CloudSqlQueryExecutor.insertIntoTable(query);
+        if (true) {
+            return m_helper.returnInsertJsonSucess();
+        } else {
+            return m_helper.returnInsertJsonFailed();
+        }
     }
 
 }

@@ -52,8 +52,14 @@ public class WorkersService implements IService {
     public JSONObject getuserLogin(String emailorphone, String password) throws Exception {
         JSONObject response = null;
         WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
-        response = opreation.userLoginWithCredentials(emailorphone,password);
+        response = opreation.userLoginWithCredentials(emailorphone, password);
         return response;
+    }
+
+    public JSONObject insertWorkerTypeData(Map<String, String> map) throws SQLException {
+        JSONObject response = null;
+        WorkerOreation opreation = new WorkerOreation(new CloudSqlQueryBuilder(new CloudSqlEnumsFormatter()), new WorkerOpreationHelper());
+        return opreation.insertWorkerType(map);
     }
 
 }

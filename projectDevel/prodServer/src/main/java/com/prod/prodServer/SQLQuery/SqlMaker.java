@@ -7,7 +7,9 @@ package com.prod.prodServer.SQLQuery;
 
 import com.prod.prodServer.CommonCode.Lists;
 import com.prod.prodServer.CommonCode.Strings;
+import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -40,6 +42,25 @@ public class SqlMaker {
     }
 
     // Query----------------------------------------------------------------------------------------------
+    public SqlMaker INSERTINTO(CloudSQLTableEnum cloudSQLTableEnum,Map<String, String> map) {
+        List<String> colName = Lists.newArrayList();
+        List<String> value = Lists.newArrayList();
+        for (Map.Entry<String, String> data : map.entrySet()) {
+            colName.add(data.getKey());
+            value.add(data.getValue());
+        }
+        return INSERTINTO(cloudSQLTableEnum,colName, value);
+    }
+
+    private SqlMaker INSERTINTO(CloudSQLTableEnum cloudSQLTableEnum,List<String> colName, List<String> value) {
+        String col = "";
+        col = String.format("(%s)", makeString(colName, ", "));
+        String val = "";
+        val = String.format("(%s)", makeStringWithQuoted(value, ", "));
+        m_query = String.format("%s INSERT INTO %s %s VALUES %s", m_query,cloudSQLTableEnum, col, val);
+        return this;
+    }
+
     public SqlMaker WITH(SqlMaker... queries) {
         return WITH(Lists.newArrayList(queries));
     }
@@ -584,8 +605,31 @@ public class SqlMaker {
         return list;
     }
 
+    private List<String> makeStringQuoted(List objs) {
+        List<Object> correctedList = Lists.newArrayList();
+        for (Object obj : objs) {
+            if (obj instanceof List) {
+                correctedList.addAll((List) obj);
+            } else {
+                correctedList.add(obj);
+            }
+        }
+        List<String> list = Lists.newArrayList();
+        for (Object obj : correctedList) {
+            String str = makeString(obj);
+            if (Strings.notEmpty(str)) {
+                list.add(getQuotedValue(str));
+            }
+        }
+        return list;
+    }
+
     private String makeString(List objs, String join) {
         return Strings.join(makeString(objs), join);
+    }
+
+    private String makeStringWithQuoted(List objs, String join) {
+        return Strings.join(makeStringQuoted(objs), join);
     }
 
     private String makeString(Object obj, List objs, String join) {
@@ -598,4 +642,5 @@ public class SqlMaker {
     public String getQuotedValue(String data) {
         return "'" + data + "'";
     }
+
 }

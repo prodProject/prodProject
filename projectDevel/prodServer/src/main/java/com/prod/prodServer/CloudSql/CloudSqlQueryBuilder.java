@@ -7,13 +7,12 @@ package com.prod.prodServer.CloudSql;
 
 import com.healthmarketscience.sqlbuilder.CreateTableQuery;
 import com.healthmarketscience.sqlbuilder.InsertQuery;
-import com.healthmarketscience.sqlbuilder.QueryReader;
 import com.healthmarketscience.sqlbuilder.SelectQuery;
 import com.healthmarketscience.sqlbuilder.UpdateQuery;
 import com.prod.prodServer.Enums.CloudSQLTableEnum;
 import com.prod.prodServer.Formatters.CloudSqlEnumsFormatter;
+import com.prod.prodServer.SQLQuery.SqlMaker;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *
@@ -104,5 +103,10 @@ public class CloudSqlQueryBuilder {
         }
        
         return selectQuery.toString().concat("LIMIT 1 ;");
+    }
+
+    public String insertQueryWorkerType(CloudSQLTableEnum cloudSQLTableEnum, Map<String, String> map) {
+        SqlMaker query = SqlMaker.builder().INSERTINTO(cloudSQLTableEnum,map);
+        return query.build();
     }
 }
